@@ -1,0 +1,72 @@
+[
+	{
+		"id": 1,
+		"title": "Hub 2 Plus Jeweller",
+		"description": "Panel de control inalámbrico con soporte para la fotoverificación. Admite Wi-Fi, Ethernet y dos tarjetas SIM",
+		"code": "A000",
+		"price": 350,
+		"status": true,
+		"stock": 3,
+		"category": "Hubs"
+	},
+	{
+		"id": 2,
+		"title": "ReX Jeweller",
+		"description": "Repetidor de Señal de Radio Inalambrico",
+		"code": "B000",
+		"price": 190,
+		"status": true,
+		"stock": 2,
+		"category": "Repetidor de Señal"
+	},
+	{
+		"id": 3,
+		"title": "ReX 2 Jeweller",
+		"description": "Repetidor de Señal de Radio Inalambrico que admite los protocolos Jeweller y Wings",
+		"code": "B001",
+		"price": 215,
+		"status": false,
+		"stock": 0,
+		"category": "Repetidor de Señal"
+	},
+	{
+		"id": 4,
+		"title": "DoorProtect Jeweller",
+		"description": "Detector Inalambrico de Apertura de puertas y ventanas",
+		"code": "C000",
+		"price": 50,
+		"status": true,
+		"stock": 10,
+		"category": "Detector de Aperturas"
+	},
+	{
+		"id": 5,
+		"title": "GlassProtect Jeweller",
+		"description": "Detector Inalambrico de rotura de cristales con microfono inteligente",
+		"code": "C001",
+		"price": 75,
+		"status": true,
+		"stock": 7,
+		"category": "Detector de Aperturas"
+	},
+	{
+		"id": 6,
+		"title": "MotionProtect Jeweller",
+		"description": "Detector de Movimiento",
+		"code": "D000",
+		"price": 150,
+		"status": true,
+		"stock": 5,
+		"category": "Detector de Movimiento"
+	},
+	{
+		"id": 7,
+		"title": "MotionCam Jeweller",
+		"description": "Detector de Movimiento con camara inteligente incluida",
+		"code": "D001",
+		"price": 225,
+		"status": true,
+		"stock": 3,
+		"category": "Detector de Movimiento"
+	}
+]
