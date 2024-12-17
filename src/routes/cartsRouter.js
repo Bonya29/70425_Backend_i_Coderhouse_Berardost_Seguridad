@@ -14,6 +14,10 @@ router.post("/", async (req, res) => {
     if (typeof product !== "number" || typeof quantity !== "number") {
         return res.status(400).json({error:"El id del producto y la cantidad deben ser números."})
     }
+    let existProduct = await ProductsManager.getProductsById(product)
+    if (!existProduct) {
+        return res.status(404).json({error:`No existe ningun producto con el id ${product}`})
+    }
     try {
         let newCart = await CartsManager.addCart({products: [{product, quantity}]})
         return res.status(200).json({message: "Se ha creado el carrito", newCart})
@@ -57,9 +61,13 @@ router.post("/:cid/product/:pid", async (req, res) => {
     if (isNaN(cid) || isNaN(pid)) {
         return res.status(400).json({error:"Ambos id deben ser numericos"})
     }
+    let existProduct = await ProductsManager.getProductsById(pid)
+    if (!existProduct) {
+        return res.status(404).json({error:`No existe ningun producto con el id ${pid}`})
+    }
     try {
-        const updatedCart = await CartsManager.addProductToCartById(cid, pid)
-        return res.status(200).json({message: "Producto añadido al carrito exitosamente", cart: updatedCart})
+        let updatedCart = await CartsManager.addProductToCartById(cid, pid)
+        return res.status(200).json({message: "Se ha añadido el producto al carrito", cart: updatedCart})
     } catch (error) {
         iSvError(res, error)
     }
