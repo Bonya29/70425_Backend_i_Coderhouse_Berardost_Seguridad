@@ -4,69 +4,131 @@
 		"title": "Hub 2 Plus Jeweller",
 		"description": "Panel de control inalámbrico con soporte para la fotoverificación. Admite Wi-Fi, Ethernet y dos tarjetas SIM",
 		"code": "A000",
-		"price": 350,
+		"price": 330,
 		"status": true,
 		"stock": 3,
-		"category": "Hubs"
+		"category": "Hubs",
+		"image": "/assets/products/HubRexJeweller.png"
 	},
 	{
 		"id": 2,
 		"title": "ReX Jeweller",
 		"description": "Repetidor de Señal de Radio Inalambrico",
 		"code": "B000",
-		"price": 190,
+		"price": 95,
 		"status": true,
 		"stock": 2,
-		"category": "Repetidor de Señal"
+		"category": "Repetidor de Señal",
+		"image": "/assets/products/HubRexJeweller.png"
 	},
 	{
 		"id": 3,
 		"title": "ReX 2 Jeweller",
 		"description": "Repetidor de Señal de Radio Inalambrico que admite los protocolos Jeweller y Wings",
 		"code": "B001",
-		"price": 215,
+		"price": 135,
 		"status": false,
 		"stock": 0,
-		"category": "Repetidor de Señal"
+		"category": "Repetidor de Señal",
+		"image": "/assets/products/HubRexJeweller.png"
 	},
 	{
 		"id": 4,
 		"title": "DoorProtect Jeweller",
 		"description": "Detector Inalambrico de Apertura de puertas y ventanas",
 		"code": "C000",
-		"price": 50,
+		"price": 30,
 		"status": true,
 		"stock": 10,
-		"category": "Detector de Aperturas"
+		"category": "Detector de Aperturas",
+		"image": "/assets/products/DoorProtectJeweller.png"
 	},
 	{
 		"id": 5,
 		"title": "GlassProtect Jeweller",
 		"description": "Detector Inalambrico de rotura de cristales con microfono inteligente",
 		"code": "C001",
-		"price": 75,
+		"price": 50,
 		"status": true,
 		"stock": 7,
-		"category": "Detector de Aperturas"
+		"category": "Detector de Aperturas",
+		"image": "/assets/products/GlassProtectJeweller.png"
 	},
 	{
 		"id": 6,
 		"title": "MotionProtect Jeweller",
 		"description": "Detector de Movimiento",
 		"code": "D000",
-		"price": 150,
+		"price": 50,
 		"status": true,
 		"stock": 5,
-		"category": "Detector de Movimiento"
+		"category": "Detector de Movimiento",
+		"image": "/assets/products/MotionProtectJeweller.png"
 	},
 	{
 		"id": 7,
 		"title": "MotionCam Jeweller",
 		"description": "Detector de Movimiento con camara inteligente incluida",
 		"code": "D001",
-		"price": 225,
+		"price": 75,
 		"status": true,
 		"stock": 3,
-		"category": "Detector de Movimiento"
+		"category": "Detector de Movimiento",
+		"image": "/assets/products/motionCamjeweller.png"
+	},
+	{
+		"id": 8,
+		"title": "Button Jeweller",
+		"description": "Boton de Panico Inalambrico",
+		"code": "E000",
+		"price": 15,
+		"status": true,
+		"stock": 6,
+		"category": "Mandos",
+		"image": "/assets/products/ButtonJeweller.png"
+	},
+	{
+		"id": 9,
+		"title": "SpaceController Jeweller",
+		"description": "Mando Inalambrico con boton de panico y control de los modos de seguridad",
+		"code": "E001",
+		"price": 20,
+		"status": true,
+		"stock": 7,
+		"category": "Mandos",
+		"image": "/assets/products/SpaceControllerJeweller.png"
+	},
+	{
+		"id": 10,
+		"title": "KeyPad Jeweller",
+		"description": "Teclado Inalambrico y Tactil",
+		"code": "F000",
+		"price": 70,
+		"status": true,
+		"stock": 4,
+		"category": "Teclados",
+		"image": "/assets/products/KeyPadJeweller.png"
+	},
+	{
+		"id": 11,
+		"title": "StreetSiren Jeweller",
+		"description": "Sirena Inalambrica de Exterior",
+		"code": "G000",
+		"price": 110,
+		"status": true,
+		"stock": 8,
+		"category": "Sirenas",
+		"image": "/assets/products/StreetSirenJeweller.png"
+	},
+	{
+		"id": 12,
+		"title": "HomeSiren Jeweller",
+		"description": "Sirena Inalambrica de Interior",
+		"code": "G001",
+		"price": 85,
+		"status": true,
+		"stock": 12,
+		"category": "Sirenas",
+		"image": "/assets/products/HomeSirenJeweller.png"
 	}
 ]
