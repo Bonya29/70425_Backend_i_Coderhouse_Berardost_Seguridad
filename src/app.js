@@ -1,11 +1,14 @@
 import express from 'express'
+import fs from 'fs'
+import path from 'path'
 import { engine } from 'express-handlebars'
-// import { Server } from "socket.io"
+import { Server } from "socket.io"
 import { router as productsRouter } from './routes/productsRouter.js'
 import { router as cartsRouter } from './routes/cartsRouter.js'
 import { router as viewsRouter } from './routes/viewsRouter.js'
 const port = 8080
 const app = express()
+const productsFilePath = path.resolve('./src/data/products.json')
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('./src/public'))
@@ -16,10 +19,29 @@ app.set("view engine", "handlebars")
 app.set("views", "./src/views")
 app.engine("handlebars", engine())
 
-// app.get('/', (req, res) => {
-//     res.status(200).send('Servidor Encendido')
-// })
-
 const server = app.listen(port, () => {
     console.log(`Server encendido en el puerto ${port} \n\nurl: http://localhost:${port}/`)
+})
+
+const io = new Server(server)
+
+io.on('connection', (socket) => { 
+    console.log(`Se ha conectado un usuario. ID: ${socket.id}`)
+
+    socket.emit('showProducts')
+
+    socket.on('newProduct', (product) => {
+        console.log('Se ha agregado un nuevo producto:', product)
+        const data = fs.readFileSync(productsFilePath, 'utf8')
+        const products = JSON.parse(data)
+        products.push(product)
+
+        fs.writeFileSync(productsFilePath, JSON.stringify(products, null, "\t"))
+
+        io.emit('newProduct', product);
+    })
+
+    socket.on('disconnect', () => {
+        console.log(`Se ha desconectado un usuario. ID: ${socket.id}`)
+    })
 })

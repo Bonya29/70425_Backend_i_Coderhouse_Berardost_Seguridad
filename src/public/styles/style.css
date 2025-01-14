@@ -5,13 +5,16 @@
     font-family: sans-serif;
 }
 
+body {
+    background-color: #f0f0f0;
+}
+
 footer {
     background-color: black;
-    color: white;
-    margin-top: 1rem;
+    color: rgb(230, 230, 230);
+    margin-top: 3rem;
     padding: 1rem 0rem;
     text-align: center;
-    gap: 1rem;
 }
 
 header, .title {
@@ -48,4 +51,84 @@ header, .title {
         margin-bottom: 1rem;
     }
     max-width: 200px;
+}
+
+.btns {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    .add, .mod, .del {
+        font-size: 1rem;
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+        padding: 1rem;
+        border-radius: 1rem;
+        border: none;
+    }
+    .add {
+        background-color: rgb(0, 225, 0);
+        &:hover {
+            background-color: rgb(0, 245, 0);
+            cursor: pointer;
+        }
+    }
+    .mod {
+        background-color: rgb(230, 230, 0);
+        &:hover {
+            background-color: rgb(235, 235, 0);
+            cursor: pointer;
+        }
+    }
+    .del {
+        background-color: rgb(255, 0, 0);
+        &:hover {
+            background-color: rgb(255, 52, 52);
+            cursor: pointer;
+        }
+    }
+}
+
+.cont-form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+    .form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 1rem;
+        box-shadow: 0.25rem 0.25rem 2rem 0rem #000000;
+        .inputs {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            .input {
+                display: flex;
+                flex-direction: column;
+                label {
+                    font-weight: bold;
+                }
+                input, textarea, select, option {
+                    padding: 0.5rem;
+                    border-radius: 1rem;
+                    border: 1px solid #000000;
+                }
+                textarea {
+                    resize: none;
+                    overflow: hidden;
+                    width: 187px;
+                }
+            }
+        }
+    }
+    .add, .mod, .del { 
+        margin-top: 2rem;
+    }
+    .title {
+        font-size: 2rem;
+        margin: 2rem;
+    }
 }

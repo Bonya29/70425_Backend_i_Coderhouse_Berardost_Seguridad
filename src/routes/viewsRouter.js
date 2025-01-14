@@ -1,13 +1,10 @@
 import { Router } from 'express'
-import { ProductsManager } from '../dao/productsManager.js'
 export const router = Router()
 
-router.get('/', async (req, res) => {
-    let products = await ProductsManager.getProducts()
-    res.render('home', {products})
+router.get('/', (req, res) => {
+    res.render('home')
 })
 
-// router.get('/realTimeProducts', (req, res) => {
-//     let products = ProductsManager.getProducts()
-//     res.render('realTimeProducts', {products})
-// })
+router.get('/realTimeProducts', (req, res) => {
+    res.render('realTimeProducts')
+})

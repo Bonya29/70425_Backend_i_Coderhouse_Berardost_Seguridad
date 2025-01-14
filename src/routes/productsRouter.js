@@ -61,12 +61,12 @@ router.get("/code/:code", async (req, res) => {
 })
 
 router.post("/", async (req, res) => { 
-    let {title, description, code, price, status = true, stock, category} = req.body
-    if (!title || !description || !code || !price || !status || !stock || !category) {
-        return res.status(400).json({error:"Todos los campos son obligatorios. {title, description, code, price, status, stock, category}"})
+    let {title, description, price, stock, category, code, status = true} = req.body
+    if (!title || !description || !price || !stock || !category || !code || !status) {
+        return res.status(400).json({error:"Todos los campos son obligatorios. {title, description, price, stock, category, code, status}"})
     }
-    if (typeof title !== 'string' || typeof description !== 'string' || typeof code !== 'string' || typeof category !== 'string' || typeof price !== 'number' || typeof stock !== 'number' || typeof status !== 'boolean') {
-        return res.status(400).json({error:`Tipos de datos incorrectos. (title = string, description = string, code = string, price = number, status = boolean, stock = number, category = string)`})
+    if (typeof title !== 'string' || typeof description !== 'string' || typeof price !== 'number' || typeof stock !== 'number' || typeof category !== 'string' || typeof code !== 'string' || typeof status !== 'boolean') {
+        return res.status(400).json({error:`Tipos de datos incorrectos. (title = string, description = string, price = number, stock = number, category = string, code = string, status = boolean,)`})
     }
     try {
         let existTitle = await ProductsManager.getProductsByTitle(title)
@@ -76,7 +76,7 @@ router.post("/", async (req, res) => {
         } else if (existCode) {
             return res.status(400).json({error:`Ya existe un producto con el codigo ${code}`})
         }
-        let newProduct = await ProductsManager.addProduct({title, description, code, price, status, stock, category})
+        let newProduct = await ProductsManager.addProduct({title, description, price, stock, category, code, status})
         return res.status(201).json({message: "Se ha añadido un nuevo producto", newProduct})
     } catch (error) {
         iSvError(res, error)
@@ -94,8 +94,8 @@ router.put("/:pid", async (req, res) => {
         return res.status(400).json({error:`El id no puede ser modificado`})
     }
     try{
-        if (newProductData.title && typeof newProductData.title !== 'string' || newProductData.description && typeof newProductData.description !== 'string' || newProductData.code && typeof newProductData.code !== 'string' || newProductData.category && typeof newProductData.category !== 'string' || newProductData.price && typeof newProductData.price !== 'number' || newProductData.stock && typeof newProductData.stock !== 'number' || newProductData.status && typeof newProductData.status !== 'boolean') {
-            return res.status(400).json({error:`Tipos de datos incorrectos. (title = string, description = string, code = string, price = number, status = boolean, stock = number, category = string)`})
+        if (newProductData.title && typeof newProductData.title !== 'string' || newProductData.description && typeof newProductData.description !== 'string' || newProductData.price && typeof newProductData.price !== 'number' || newProductData.stock && typeof newProductData.stock !== 'number' || newProductData.category && typeof newProductData.category !== 'string' || newProductData.code && typeof newProductData.code !== 'string' || newProductData.status && typeof newProductData.status !== 'boolean') {
+            return res.status(400).json({error:`Tipos de datos incorrectos. (title = string, description = string, price = number, stock = number, category = string, code = string, status = boolean,)`})
         }
         if (newProductData.title) {
             let existTitle = await ProductsManager.getProductsByTitle(newProductData.title)

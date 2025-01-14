@@ -2,16 +2,9 @@
 
 <main>
     <h2 class="title">Nuestros Productos Ajax</h2>
-    <section id="products" class="products">
-        {{#each products}}
-            <div class="card">
-                <img src={{image}} alt={{title}}>
-                <h3>{{title}}</h3>
-                <p>{{description}}</p>
-                <p class="price">${{price}}</p>
-            </div>
-        {{/each}}
-    </section> 
+    <section id="products" class="products"></section> 
 </main>
 
 {{>footer}}
+
+<script src="/js/home.js"></script>

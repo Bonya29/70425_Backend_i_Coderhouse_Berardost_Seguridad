@@ -1,0 +1,15 @@
+{{>header}}
+
+<main>
+    <h2 class="title">Productos</h2>
+    <div class="btns">
+        <button class="add" onclick="generateForm(option = 'add')">Agregar Productos</button>
+    </div>
+    <div class="cont-form"><div id="form" class="form"></div></div>
+    <section id="products" class="products"></section> 
+</main>
+
+{{>footer}}
+
+<script src="./socket.io/socket.io.js"></script>
+<script src="/js/realTimeProducts.js"></script>
