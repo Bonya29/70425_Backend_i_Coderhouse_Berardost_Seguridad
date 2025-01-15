@@ -58,7 +58,7 @@ header, .title {
     justify-content: center;
     gap: 1rem;
     margin-bottom: 3rem;
-    .add, .mod, .del {
+    .add, .del {
         font-size: 1rem;
         color: rgb(255, 255, 255);
         font-weight: bold;
@@ -73,17 +73,10 @@ header, .title {
             cursor: pointer;
         }
     }
-    .mod {
-        background-color: rgb(230, 230, 0);
-        &:hover {
-            background-color: rgb(235, 235, 0);
-            cursor: pointer;
-        }
-    }
     .del {
         background-color: rgb(255, 0, 0);
         &:hover {
-            background-color: rgb(255, 52, 52);
+            background-color: rgb(207, 0, 0);
             cursor: pointer;
         }
     }
@@ -124,7 +117,7 @@ header, .title {
             }
         }
     }
-    .add, .mod, .del { 
+    .add { 
         margin-top: 2rem;
     }
     .title {

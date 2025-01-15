@@ -15,9 +15,11 @@ socket.on('showProducts', async () => {
             <img src="${product.image}" alt="${product.title}">
             <h3>${product.title}</h3>
             <p>${product.description}</p>
-            <p class="price">$${product.price}</p>`
+            <p class="price">$${product.price}</p>
+            <div class="btns"><button class="del" id="btn-del">X</button></div>`
         productsContainer.appendChild(productCard)
     })
+    addEventListenersDelBtn()
 })
 
 socket.on('newProduct', (product) => { 
@@ -28,8 +30,10 @@ socket.on('newProduct', (product) => {
         <img src="${product.image}" alt="${product.title}">
         <h3>${product.title}</h3>
         <p>${product.description}</p>
-        <p class="price">$${product.price}</p>`
+        <p class="price">$${product.price}</p>
+        <div class="btns"><button class="del" id="btn-del">X</button></div>`
     productsContainer.appendChild(productCard)
+    addEventListenersDelBtn()
 })
 
 function generateForm() {
@@ -95,13 +99,25 @@ async function addProduct() {
     let existCode = products.find(prod => prod.code.toUpperCase().replace(/\s+/g, "") === code.toUpperCase().replace(/\s+/g, ""))
 
     if (title == "" || description == "" || price == "" || stock == "" || category == "" || code == "") {
-        alert("Todos los campos son obligatorios")
+        Swal.fire({
+            title: "Campos Incompletos",
+            text: "Todos los campos son obligatorios",
+            icon: "warning"
+        })
         return
     } else if (existTitle) {
-        alert(`Ya existe un producto con el nombre ${title}`)
+        Swal.fire({
+            title: "Producto Existente",
+            text: `Ya existe un producto con el nombre "${title}"`,
+            icon: "warning"
+        })
         return
     } else if (existCode) {
-        alert(`Ya existe un producto con el codigo ${code}`)
+        Swal.fire({
+            title: "Producto Existente",
+            text: `Ya existe un producto con el codigo "${code}"`,
+            icon: "warning"
+        })
         return
     } else {
         class Product {
@@ -120,7 +136,12 @@ async function addProduct() {
 
         let product = new Product(id, image, title, description, price, stock, category, code, status)
         socket.emit('newProduct', product)
-        alert("Producto agregado correctamente")
+        Swal.fire({
+            title: "Producto Agregado",
+            text: `El producto a sido agregado con exito`,
+            icon: "success"
+        })
+        
         document.getElementById('title').value = ""
         document.getElementById('description').value = ""
         document.getElementById('price').value = ""
@@ -149,4 +170,33 @@ function updateCode() {
     } else {
         codeInput.value = ""
     }
+}
+
+function addEventListenersDelBtn() {
+    const delbtn = document.querySelectorAll(".del")
+    delbtn.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const productTitle = btn.parentElement.parentElement.querySelector("h3").innerText
+            Swal.fire({
+                title: "Confirmar Eliminación",
+                text: `Estas por eliminar el producto ${productTitle}`,
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Eliminar",
+                cancelButtonText: "Cancelar"
+            })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    socket.emit("deleteProduct", productTitle)
+                    Swal.fire({
+                    title: "Producto Eliminado!",
+                    text: "El producto a sido eliminado con exito",
+                    icon: "success"
+                    })
+                }
+            })
+        })
+    })
 }

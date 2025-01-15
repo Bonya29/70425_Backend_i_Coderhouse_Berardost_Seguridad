@@ -31,14 +31,23 @@ io.on('connection', (socket) => {
     socket.emit('showProducts')
 
     socket.on('newProduct', (product) => {
-        console.log('Se ha agregado un nuevo producto:', product)
         const data = fs.readFileSync(productsFilePath, 'utf8')
         const products = JSON.parse(data)
         products.push(product)
 
         fs.writeFileSync(productsFilePath, JSON.stringify(products, null, "\t"))
+        io.emit('newProduct', product)
+        console.log('Se ha agregado un nuevo producto:', product)
+    })
 
-        io.emit('newProduct', product);
+    socket.on('deleteProduct', (title) => {
+        const data = fs.readFileSync(productsFilePath, 'utf8')
+        let products = JSON.parse(data)
+        products = products.filter(product => product.title !== title)
+
+        fs.writeFileSync(productsFilePath, JSON.stringify(products, null, "\t"))
+        io.emit('showProducts')
+        console.log(`Se ha eliminado el producto: ${title}`)
     })
 
     socket.on('disconnect', () => {
