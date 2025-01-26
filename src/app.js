@@ -1,6 +1,7 @@
 import express from 'express'
 import fs from 'fs'
 import path from 'path'
+import mongoose from 'mongoose'
 import { engine } from 'express-handlebars'
 import { Server } from "socket.io"
 import { router as productsRouter } from './routes/productsRouter.js'
@@ -20,11 +21,10 @@ app.set("views", "./src/views")
 app.engine("handlebars", engine())
 
 const server = app.listen(port, () => {
-    console.log(`Server encendido en el puerto ${port} \n\nurl: http://localhost:${port}/`)
+    console.log(`Server encendido en el puerto ${port} \n\nurl: http://localhost:${port}/\n`)
 })
 
 const io = new Server(server)
-
 io.on('connection', (socket) => { 
     console.log(`Se ha conectado un usuario. ID: ${socket.id}`)
 
@@ -54,3 +54,13 @@ io.on('connection', (socket) => {
         console.log(`Se ha desconectado un usuario. ID: ${socket.id}`)
     })
 })
+
+try {
+    await mongoose.connect("mongodb+srv://admin:qwer1234@cluster0.l57iz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+    {
+        dbName: 'ecommerce'
+    }
+    console.log('Base de datos conectada')
+} catch (error) {
+    console.log(error)
+}
