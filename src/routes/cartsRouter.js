@@ -65,12 +65,9 @@ router.post("/", async (req, res) => {
             return res.status(404).json({error:`No existe ningun producto con el id ${product}`})
         }
         let carts = await CartsManager.getCarts()
-        let id = 0
+        let id = 1
         if (carts.length > 0) {
             id = Math.max(...carts.map(cart => cart.id)) + 1
-            if (isNaN(id)) {
-                id = 1
-            }
         }
         let newCart = await CartsManager.addCart({id, products: [{product, quantity}]})
         return res.status(200).json({message: "Se ha creado el carrito", newCart})
@@ -110,6 +107,10 @@ router.delete("/:mongoId", async (req, res) => {
         return res.status(400).json({error:"El id debe ser un id de mongo"})
     }
     try {
+        let existCart = await CartsManager.getCartByMongoId(mongoId)
+        if (!existCart) {
+            return res.status(404).json({error: `no existe ningun carrito con el MongoId ${mongoId}`})
+        }
         await CartsManager.deleteCart(mongoId)
         let carts = await CartsManager.getCarts()
         return res.status(200).json({message: "Se ha eliminado el carrito", carts})

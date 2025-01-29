@@ -93,12 +93,9 @@ router.post("/", async (req, res) => {
             return res.status(400).json({error:`Ya existe un producto con el codigo ${code}`})
         }
         let products = await ProductsManager.getProducts()
-        let id = 0
+        let id = 1
         if (products.length > 0) {
             id = Math.max(...products.map(prod => prod.id)) + 1
-            if (isNaN(id)) {
-                id = 1
-            }
         }
         let newProduct = await ProductsManager.addProduct({id, title, description, price, stock, category, code, status})
         return res.status(201).json({message: "Se ha añadido un nuevo producto", newProduct})
