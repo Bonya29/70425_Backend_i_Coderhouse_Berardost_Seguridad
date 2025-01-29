@@ -64,10 +64,16 @@ function generateForm() {
                     <option value="Hubs">Hubs</option>
                     <option value="Repetidor de Señal">Repetidor de Señal</option>
                     <option value="Detector de Aperturas">Detector de Aperturas</option>
+                    <option value="Detector de rotura de cristales">Detector de rotura de cristales</option>
                     <option value="Detector de Movimiento">Detector de Movimiento</option>
                     <option value="Mandos">Mandos</option>
                     <option value="Teclados">Teclados</option>
                     <option value="Sirenas">Sirenas</option>
+                    <option value="Modulos de Voz">Modulos de Voz</option>
+                    <option value="Modulos de Integracion">Modulos de Integracion</option>
+                    <option value="Reles">Reles</option>
+                    <option value="Fuentes de Alimentacion">Fuentes de Alimentacion</option>
+                    <option value="Carcasas">Carcasas</option>
                 </select>
             </div>
             <div class="input">
@@ -156,10 +162,16 @@ function updateCode() {
         "Hubs": "A",
         "Repetidor de Señal": "B",
         "Detector de Aperturas": "C",
-        "Detector de Movimiento": "D",
-        "Mandos": "E",
-        "Teclados": "F",
-        "Sirenas": "G"
+        "Detector de rotura de cristales": "D",
+        "Detector de Movimiento": "E",
+        "Mandos": "F",
+        "Teclados": "G",
+        "Sirenas": "H",
+        "Modulos de Voz": "I",
+        "Modulos de Integracion": "J",
+        "Reles": "K",
+        "Fuentes de Alimentacion": "L",
+        "Carcasas": "M"
     }
 
     const category = document.getElementById("category").value

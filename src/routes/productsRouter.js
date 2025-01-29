@@ -79,8 +79,8 @@ router.get("/mongoid/:mongoId", async (req, res) => {
 router.post("/", async (req, res) => { 
     try {
         let {title, description, price, stock, category, code, status = true} = req.body
-        if (!title || !description || !price || !stock || !category || !code || !status) {
-            return res.status(400).json({error:"Todos los campos son obligatorios. {title, description, price, stock, category, code, status}"})
+        if (!title || !description || !price || !stock || !category || !code) {
+            return res.status(400).json({error:"Todos los campos, a excepción de status, son obligatorios. {title, description, price, stock, category, code, status}"})
         }
         if (typeof title !== 'string' || typeof description !== 'string' || typeof price !== 'number' || typeof stock !== 'number' || typeof category !== 'string' || typeof code !== 'string' || typeof status !== 'boolean') {
             return res.status(400).json({error:`Tipos de datos incorrectos. (title = string, description = string, price = number, stock = number, category = string, code = string, status = boolean,)`})
@@ -93,11 +93,12 @@ router.post("/", async (req, res) => {
             return res.status(400).json({error:`Ya existe un producto con el codigo ${code}`})
         }
         let products = await ProductsManager.getProducts()
+        let image = "/assets/noImageYet.png"
         let id = 1
         if (products.length > 0) {
             id = Math.max(...products.map(prod => prod.id)) + 1
         }
-        let newProduct = await ProductsManager.addProduct({id, title, description, price, stock, category, code, status})
+        let newProduct = await ProductsManager.addProduct({id, image, title, description, price, stock, category, code, status})
         return res.status(201).json({message: "Se ha añadido un nuevo producto", newProduct})
     } catch (error) {
         iSvError(res, error)

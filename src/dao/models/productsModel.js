@@ -5,6 +5,7 @@ export const productsModel = mongoose.model(
     new mongoose.Schema(
         {
             id: {type: Number, unique: true},
+            image: String,
             title: {type: String, unique: true},
             description: String,
             price: Number,
