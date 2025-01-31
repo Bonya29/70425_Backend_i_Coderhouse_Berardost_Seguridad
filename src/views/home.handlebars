@@ -2,9 +2,48 @@
 
 <main>
     <h2 class="title">Nuestros Productos Ajax</h2>
-    <section id="products" class="products"></section> 
+    <section id="products" class="products">
+        {{#each products}}
+            <div class="card">
+                <img src="{{image}}" alt="{{title}}">
+                <h3>{{title}}</h3>
+                <p>{{description}}</p>
+                <p class="price">${{price}}</p>
+                <div class="btns"><button class="add-to-cart" id="{{id}}">Añadir al Carrito</button></div>
+            </div>
+        {{/each}}
+    </section>
+    
+    <div class="page-navigation">
+        {{#if hasPrevPage}}
+        <a href="/products?page=1">First Page</a>
+        <span>-</span>
+        <a href="/products?page={{prevPage}}">Prev Page</a>
+    {{else}}
+        <span>First Page</span>
+        <span>-</span>
+        <span>Prev Page</span>
+    {{/if}}
+    <span>-</span>
+    {{#if hasNextPage}}
+        <a href="/products?page={{nextPage}}">Next Page</a>
+        <span>-</span>
+        <a href="/products?page={{totalPages}}">Last Page</a>
+    {{else}}
+        <span>Next Page</span>
+        <span>-</span>
+        <span>Last Page</span>
+    {{/if}}
+    </div>
+
+    <div class="cart-bubble">
+        <img src="/assets/cart.png" alt="cart">
+        <span id="cart-count"></span>
+    </div>
+    
 </main>
 
 {{>footer}}
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/js/home.js"></script>

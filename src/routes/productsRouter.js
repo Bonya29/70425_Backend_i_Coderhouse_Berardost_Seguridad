@@ -6,12 +6,72 @@ export const router = Router()
 
 router.get("/", async (req, res) => {
     try {
-        let products = await ProductsManager.getProducts()
-        let {limit} = req.query
-        if (limit) {
-            products = products.slice(0, limit)
-        } 
-        res.status(200).json({products})
+        let {limit, page, query, sort} = req.query
+        let queryParam = query
+        let sortParam = sort
+        
+        if (!limit) {
+            limit = 10
+        }
+
+        if (!page) {
+            page = 1
+        }
+        
+        if (query) {
+            query = {category: query}
+        } else {
+            queryParam = ""
+        }
+
+        if (sort === "asc") {
+            sort = {price: 1}
+        } else if (sort === "desc") {
+            sort = {price: -1}
+        } else {
+            sortParam = ""
+        }
+
+        let {docs: products, totalPages, hasPrevPage, prevPage, hasNextPage, nextPage} = await ProductsManager.getProducts(limit, page, query, sort)
+        let prevLink
+        let nextLink
+
+        if (hasPrevPage) {
+            prevLink = `http://localhost:8080/api/products?limit=${limit}&page=${prevPage}`
+            if (queryParam !== "") {
+                prevLink += `&query=${encodeURIComponent(queryParam)}`
+            }
+            if (sortParam !== "") {
+                prevLink += `&sort=${sortParam}`
+            }
+        } else {
+            prevLink = ""
+        }
+        
+        if (hasNextPage) {
+            nextLink = `http://localhost:8080/api/products?limit=${limit}&page=${nextPage}`
+            if (queryParam !== "") {
+                nextLink += `&query=${encodeURIComponent(queryParam)}`
+            }
+            if (sortParam !== "") {
+                nextLink += `&sort=${sortParam}`
+            }
+        } else {
+            nextLink = ""
+        }
+
+        res.status(200).json(
+            {
+                status: "success", 
+                payload: products, 
+                totalPages,
+                prevPage,
+                nextPage,
+                hasPrevPage, 
+                hasNextPage, 
+                prevLink,
+                nextLink
+                })
     } catch (error) {
         iSvError(res, error)
     }

@@ -2,8 +2,15 @@ import { productsModel } from "./models/productsModel.js"
 
 export class ProductsManager {
 
-    static async getProducts() {
-        return await productsModel.find().lean()
+    static async getProducts(limit, page, query, sort) {
+        return await productsModel.paginate(query,
+            {
+                limit,
+                page,
+                sort: sort,
+                lean: true
+            }
+        )
     }
 
     static async getProductByMongoId(mongoId) {

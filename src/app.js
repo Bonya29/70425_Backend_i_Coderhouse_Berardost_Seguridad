@@ -24,6 +24,10 @@ const server = app.listen(port, () => {
     console.log(`Server encendido en el puerto ${port} \n\nurl: http://localhost:${port}/\n`)
 })
 
+app.get('/', (req, res) => {
+    res.status(200).send('Servidor Encendido')
+})
+
 connectDB()
 
 const io = new Server(server)

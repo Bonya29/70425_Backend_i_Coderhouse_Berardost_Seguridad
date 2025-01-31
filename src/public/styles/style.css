@@ -30,11 +30,12 @@ footer {
 }
 
 .products {
+    margin: 0 10rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    column-gap: 6rem;
-    row-gap: 3rem;
+    column-gap: 7rem;
+    row-gap: 3.5rem;
 }
 
 .card {
@@ -74,7 +75,7 @@ footer {
     justify-content: center;
     gap: 1rem;
     margin-bottom: 3rem;
-    .add, .del {
+    .add, .del, .add-to-cart {
         font-size: 1rem;
         color: rgb(255, 255, 255);
         font-weight: bold;
@@ -82,7 +83,7 @@ footer {
         border-radius: 1rem;
         border: none;
     }
-    .add {
+    .add, .add-to-cart {
         background-color: rgb(0, 150, 0);
         &:hover {
             background-color: rgb(0, 180, 0);
@@ -145,5 +146,51 @@ footer {
     .title {
         font-size: 2rem;
         margin: 2rem;
+    }
+}
+
+.page-navigation {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    a {
+        color: rgb(255, 255, 255);
+        text-decoration: none;
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    span {
+        color: rgb(129, 129, 129);
+    }
+}
+
+.cart-bubble {
+    padding: auto;
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #0066ff;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    &:hover {
+        transform: scale(1.1);
+    }
+    img {
+        width: 25px;
+        height: 25px;
     }
 }
