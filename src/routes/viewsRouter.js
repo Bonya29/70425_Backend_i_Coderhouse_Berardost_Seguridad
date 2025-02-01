@@ -8,7 +8,7 @@ router.get('/products', async (req, res) => {
         page = 1
     }
 
-    let {docs: products, totalPages, hasPrevPage, prevPage, hasNextPage, nextPage} = await ProductsManager.getProducts(10, page, {}, {id: 1})
+    let {docs: products, totalPages, hasPrevPage, prevPage, hasNextPage, nextPage} = await ProductsManager.getProducts(10, page, {}, {code: 1})
 
     return res.status(200).render(
         'home',

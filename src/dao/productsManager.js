@@ -13,20 +13,19 @@ export class ProductsManager {
         )
     }
 
-    static async getProductByMongoId(mongoId) {
-        return await productsModel.findById(mongoId).lean()
-    }
-
     static async getProductById(pid) {
-        let id = Number(pid)
-        return await productsModel.findOne({id}).lean()
+        return await productsModel.findById(pid).lean()
     }
 
-    static async getProductsByIds(pids) {
-        if (!Array.isArray(pids)) {
-            pids = [Number(pids)]
+    // static async getProductById(pid) {
+    //     let id = Number(pid)
+    //     return await productsModel.findOne({id}).lean()
+    // }
+
+    static async getProductsByIds(pIds) {
+        if (!Array.isArray(pIds)) {
         }
-        return await productsModel.find({id: {$in: pids}}).lean()
+        return await productsModel.find({_id: {$in: pIds}}).lean()
     }
 
     static async getProductByCode(code) {
@@ -51,11 +50,11 @@ export class ProductsManager {
         return newProduct.toJSON()
     }
 
-    static async updateProduct(mongoId, product={}) {
-        return await productsModel.findByIdAndUpdate(mongoId, product, {new: true}).lean()
+    static async updateProduct(pid, product={}) {
+        return await productsModel.findByIdAndUpdate(pid, product, {new: true}).lean()
     }
 
-    static async deleteProduct(mongoId) {
-        return await productsModel.findByIdAndDelete(mongoId).lean()
+    static async deleteProduct(pid) {
+        return await productsModel.findByIdAndDelete(pid).lean()
     }
 }
