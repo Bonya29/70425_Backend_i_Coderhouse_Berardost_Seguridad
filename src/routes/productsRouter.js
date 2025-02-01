@@ -93,24 +93,6 @@ router.get("/:pid", async (req, res) => {
     }
 })
 
-
-// router.get("/:pid", async (req, res) => {
-//     let {pid} = req.params
-//     pid = Number(pid)
-//     if (isNaN(pid)) {
-//         return res.status(400).json({error:"El id debe ser un número"})
-//     }
-//     try {
-//         let product = await ProductsManager.getProductById(pid)
-//         if (!product) {
-//             return res.status(404).json({error:`No existe ningun producto con el id ${pid}`})
-//         }
-//         res.status(200).json({product})
-//     } catch (error) {
-//         iSvError(res, error)
-//     }
-// })
-
 router.get("/code/:code", async (req, res) => {
     let {code} = req.params
     try {

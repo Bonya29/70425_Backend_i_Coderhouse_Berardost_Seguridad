@@ -17,11 +17,6 @@ export class ProductsManager {
         return await productsModel.findById(pid).lean()
     }
 
-    // static async getProductById(pid) {
-    //     let id = Number(pid)
-    //     return await productsModel.findOne({id}).lean()
-    // }
-
     static async getProductsByIds(pIds) {
         if (!Array.isArray(pIds)) {
         }

@@ -1,3 +1,4 @@
+// Nota: Codigo en desuso
 document.title = 'Products'
 const socket = io()
 

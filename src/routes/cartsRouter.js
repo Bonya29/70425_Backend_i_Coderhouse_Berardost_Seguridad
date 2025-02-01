@@ -14,25 +14,6 @@ router.get("/", async (req, res) => {
     }
 })
 
-// router.get("/:cid", async (req, res) => {
-//     let {cid} = req.params
-//     cid = Number(cid)
-//     if (isNaN(cid)) {
-//         return res.status(400).json({error:"El id debe ser un número"})
-//     }
-//     try {
-//         let cart = await CartsManager.getCartById(cid)
-//         if (!cart) {
-//             return res.status(404).json({error:`No existe ningun carrito con el id ${cid}`})
-//         }
-//         let productIds = cart.products.map(prod => prod.product)
-//         let products = await ProductsManager.getProductsByIds(productIds)
-//         return res.status(200).json({cart, products})
-//     } catch (error) {
-//         iSvError(res, error)
-//     }
-// })
-
 router.get("/:cid", async (req, res) => {
     let {cid} = req.params
     if (!isValidObjectId(cid)) {

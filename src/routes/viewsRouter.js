@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { ProductsManager } from "../dao/productsManager.js"
+import { CartsManager } from "../dao/cartsManager.js"
 export const router = Router()
 
 router.get('/products', async (req, res) => {
@@ -23,10 +24,13 @@ router.get('/products', async (req, res) => {
     )
 })
 
-router.get('/cart', async (req, res) => {
-    return res.status(200).render('cart')
+router.get('/cart/:cid', async (req, res) => {
+    let {cid} = req.params
+    let cart = await CartsManager.getCartByIdWithPopulate(cid)
+    return res.status(200).render('cart', {products: cart.products, cid})
 })
 
-router.get('/realTimeProducts', (req, res) => {
-    res.render('realTimeProducts')
-})
+// Nota: Código en desuso
+// router.get('/realTimeProducts', (req, res) => {
+//     res.render('realTimeProducts')
+// })

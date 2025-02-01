@@ -1,4 +1,3 @@
-import e from "express"
 import { cartsModel } from "./models/cartsModel.js"
 
 export class CartsManager {
@@ -6,14 +5,9 @@ export class CartsManager {
     static async getCarts() {
         return await cartsModel.find().lean()
     }
-    
-    // static async getCartById(cid) {
-    //     let id = Number(cid)
-    //     return await cartsModel.findOne({id}).lean()
-    // }
 
     static async getCartByIdWithPopulate(cid) {
-        return await cartsModel.findById(cid).populate('products.product')
+        return await cartsModel.findById(cid).populate('products.product').lean()
     }
 
     static async getCartById(cid) {

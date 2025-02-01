@@ -1,7 +1,31 @@
 {{>header}}
 
 <main>
-    <h2 class="title">Carrito<br>Proximamente</h2>
+    <h2 class="title">Carrito</h2>
+    <p id="cart-container" class="cart-info" data-cid="{{cid}}">Carrito: {{cid}}</p>
+    <section id="products" class="products">
+        {{#each products}}
+            <div class="card">
+                <img src="{{this.product.image}}" alt="{{this.product.title}}">
+                <h3>{{this.product.title}}</h3>
+                <p>{{this.product.description}}</p>
+                <p class="price">${{this.product.price}}</p>
+                <p class="quantity">Cantidad: {{this.quantity}}</p>
+                <div class="btns"><button class="del" id="{{this.product._id}}">X</button></div>
+            </div>
+        {{/each}}
+    </section>
+
+    <div class="btns">
+        <button class="clear" style="margin-top: 3rem;" onclick="clearCart()">Vaciar Carrito</button>
+    </div>
+
+    <div class="page-navigation">
+        <a href="/products">Volver al Catalogo</a>
+    </div>
 </main>
 
 {{>footer}}
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/cart.js"></script>

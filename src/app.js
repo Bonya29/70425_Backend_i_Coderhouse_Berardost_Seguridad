@@ -30,6 +30,8 @@ app.get('/', (req, res) => {
 
 connectDB()
 
+
+// Nota: Código en desuso
 const io = new Server(server)
 io.on('connection', (socket) => { 
     console.log(`Se ha conectado un usuario. ID: ${socket.id}`)
